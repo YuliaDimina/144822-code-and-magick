@@ -15,31 +15,29 @@ var renderStatistics = function (ctx, names, times) {
   ctx.fillText('Статистика результатов:', 120, 60);
 
   var max = -1;
-  var min = Infinity;
+  var min = 0;
+  var time = 0;
 
   for (var i = 0; i < times.length; i++) {
-    var time = times[i];
+    time = times[i];
     if (time > max) {
       max = time;
     }
-    if (time < min) {
-      min = time;
-    }
   }
 
-  min = 0;
-  var histoHeight = 150;
+  var histoHeight = -150;
   var histoX = 140;
-  var step = histoHeight / (max - min);
+  var step = histoHeight / max;
   var columnIndent = 50;
 
-  for (var i = 0; i < times.length; i++) {
+  for (i = 0; i < times.length; i++) {
     var name = names[i];
-    var time = times[i];
+    time = times[i];
 
-    var height = step * (time - min);
-
-    ctx.fillText(time.toFixed(0), histoX + columnIndent * i, histoHeight - 60);
+    var height = step * time;
+    ctx.translate(0, height);
+    ctx.fillText(time.toFixed(0), histoX + columnIndent * i, 245);
+    ctx.translate(0, -height);
 
     if (name === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
@@ -47,9 +45,9 @@ var renderStatistics = function (ctx, names, times) {
       ctx.fillStyle = ['rgba(0, 0 ', ((Math.random() * 7) * 61).toFixed(0), ' 0.88)'];
     }
 
-    ctx.fillRect(histoX + columnIndent * i, 100, 40, height);
+    ctx.fillRect(histoX + columnIndent * i, 250, 40, height);
     ctx.fillStyle = '#000';
-    ctx.fillText(name, histoX + columnIndent * i, 100 + histoHeight + 20);
+    ctx.fillText(name, histoX + columnIndent * i, 100 + histoHeight + 315);
   }
 };
 
