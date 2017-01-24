@@ -15,7 +15,6 @@ var renderStatistics = function (ctx, names, times) {
   ctx.fillText('Статистика результатов:', 120, 60);
 
   var max = -1;
-  var min = 0;
   var time = 0;
 
   for (var i = 0; i < times.length; i++) {
@@ -28,6 +27,9 @@ var renderStatistics = function (ctx, names, times) {
   var histoHeight = -150;
   var histoX = 140;
   var step = histoHeight / max;
+  if (!isFinite(step)) {
+    step = 1;
+  }
   var columnIndent = 50;
 
   for (i = 0; i < times.length; i++) {
