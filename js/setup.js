@@ -1,14 +1,45 @@
 'use strict';
+// создаем константы для кнопок управления с клавиатуры enter и escape
+var BUTTON_BYENTER = 13;
+var BUTTON_CLOSE_BYESCAPE = 27;
 // находим контейнер формы настроек персонажа
 var setupContainer = document.querySelector('.setup');
 // находим кнопку открытия контейнера
+var setupContainerAriastatus = function () {
+  if (setupContainer.getAttribute('aria-hidden', true)) {
+    setupContainer.setAttribute('aria-hidden', false);
+  } else {
+    setupContainer.setAttribute('aria-hidden', true);
+  }
+};
 var setupOpenBtn = document.querySelector('.setup-open-icon');
 // в контейнере формы настроек находим кнопку закрытия контейнера
+var setupOpenBtnAriastatus = function () {
+  if (setupOpenBtn.getAttribute('aria-pressed', false)) {
+    setupOpenBtn.setAttribute('aria-pressed', true);
+  } else {
+    setupOpenBtn.setAttribute('aria-pressed', false);
+  }
+};
 var setupCloseBtn = setupContainer.querySelector('.setup-close');
 // в контейнере формы настроек находим кнопку сохранения
+var setupCloseBtnAriastatus = function () {
+  if (setupCloseBtn.getAttribute('aria-pressed', false)) {
+    setupCloseBtn.setAttribute('aria-pressed', true);
+  } else {
+    setupCloseBtn.setAttribute('aria-pressed', false);
+  }
+};
 var setupSubmitBtn = setupContainer.querySelector('.setup-submit');
 // находим части svg-картинки персонажа, которые будем менять по клику
 // и задаем массивы цветов, которые будем применять по клику
+var setupSubmitBtnAriastatus = function () {
+  if (setupSubmitBtn.getAttribute('aria-pressed', false)) {
+    setupSubmitBtn.setAttribute('aria-pressed', true);
+  } else {
+    setupSubmitBtn.setAttribute('aria-pressed', false);
+  }
+};
 var wizardCoat = setupContainer.querySelector('#wizard-coat');
 var wizardCoatColors = [
   'rgb(101, 137, 164)',
@@ -35,12 +66,10 @@ var wizardFireballColors = [
   '#e6e848'
 ];
 var wizardFace = setupContainer.querySelector('#wizard-face');
-// создаем константы для кнопок управления с клавиатуры enter и escape
-var BUTTON_BYENTER = 13;
-var BUTTON_CLOSE_BYESCAPE = 27;
 // задаем функцию открытия\закрытия контейнера формы (добавления\снятия соответствующего класса)
 var openSetupContainer = function () {
   setupContainer.classList.remove('invisible');
+  setupContainerAriastatus();
 };
 var closeSetupContainer = function () {
   setupContainer.classList.add('invisible');
@@ -63,14 +92,14 @@ var setupOpenHendler = function () {
   openSetupContainer();
   // закрытие по Событию кнопки escape внутри открытого контейнера формы
   document.addEventListener('keydown', setupCloseHendler);
+  // меняем атрибут роли
+  setupOpenBtnAriastatus();
 };
 
 // задаем функцию открытия контейнера формы настроек персонажа по КЛИКУ НА
 // кнопку открытия формы (сюда входит вся предыдущая колбасня с присвоением классов,
 // ослеживанием событий клавиатуры и прочими бубенцами)
-setupOpenBtn.addEventListener('click', function () {
-  setupOpenHendler();
-});
+setupOpenBtn.addEventListener('click', setupOpenHendler);
 // задаем функцию открытия контейнера формы настроек персонажа по НАЖАТИЮ НА
 // кнопку открытия формы (сюда входит вся предыдущая колбасня с присвоением классов,
 // ослеживанием событий клавиатуры и прочими бубенцами Плюс отслеживание события кнопки Enter)
@@ -82,6 +111,7 @@ setupOpenBtn.addEventListener('keydown', function (evt) {
 // тупо задаем функцию закрытия контейнера формы настроек по КЛИКУ НА кнопку закрытия
 setupCloseBtn.addEventListener('click', function () {
   closeSetupContainer();
+  setupCloseBtnAriastatus();
 });
 // не так тупо (уже с проверкой на Событие нажатия Enter) задаем функцию закрытия
 // контейнера формы настроек по НАЖАТИЮ НА кнопку закрытия
@@ -89,11 +119,13 @@ setupCloseBtn.addEventListener('keydown', function (evt) {
   if (isActiveEvent(evt)) {
     closeSetupContainer();
   }
+  setupCloseBtnAriastatus();
 });
 // опять тупо задаем функцию закрытия контейнера формы настроек по КЛИКУ НА
 // кнопку сохранения настроек персонажа
 setupSubmitBtn.addEventListener('click', function () {
   closeSetupContainer();
+  setupSubmitBtnAriastatus();
 });
 // опять но уже не так тупо (с проверкой на Событие кнопки Enter)
 // задаем функцию закрытия контейнера формы настроек по НАЖАТИЮ НА
@@ -102,6 +134,7 @@ setupSubmitBtn.addEventListener('keydown', function (evt) {
   if (isActiveEvent(evt)) {
     closeSetupContainer();
   }
+  setupSubmitBtnAriastatus();
 });
 // создаем колдунство с непредсказуемой сменой цветов по клику на (там в самом в начале
 // определенный нами) участок svg-картинки нашего персонажа
