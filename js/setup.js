@@ -2,6 +2,11 @@
 // создаем константы для кнопок управления с клавиатуры enter и escape
 var BUTTON_BYENTER = 13;
 var BUTTON_CLOSE_BYESCAPE = 27;
+var changeAriaStatus = function (param1, param2) {
+  if (param1.getAttribute(param2, false)) {
+    param1.setAttribute(param2, true);
+  }
+};
 // находим контейнер формы настроек персонажа
 var setupContainer = document.querySelector('.setup');
 // находим кнопку открытия контейнера
@@ -14,32 +19,14 @@ var setupContainerAriastatus = function () {
 };
 var setupOpenBtn = document.querySelector('.setup-open-icon');
 // в контейнере формы настроек находим кнопку закрытия контейнера
-var setupOpenBtnAriastatus = function () {
-  if (setupOpenBtn.getAttribute('aria-pressed', false)) {
-    setupOpenBtn.setAttribute('aria-pressed', true);
-  } else {
-    setupOpenBtn.setAttribute('aria-pressed', false);
-  }
-};
+var setupOpenBtnAriastatus = changeAriaStatus(setupOpenBtn, 'aria-pressed');
 var setupCloseBtn = setupContainer.querySelector('.setup-close');
 // в контейнере формы настроек находим кнопку сохранения
-var setupCloseBtnAriastatus = function () {
-  if (setupCloseBtn.getAttribute('aria-pressed', false)) {
-    setupCloseBtn.setAttribute('aria-pressed', true);
-  } else {
-    setupCloseBtn.setAttribute('aria-pressed', false);
-  }
-};
+var setupCloseBtnAriastatus = changeAriaStatus(setupCloseBtn, 'aria-pressed');
 var setupSubmitBtn = setupContainer.querySelector('.setup-submit');
 // находим части svg-картинки персонажа, которые будем менять по клику
 // и задаем массивы цветов, которые будем применять по клику
-var setupSubmitBtnAriastatus = function () {
-  if (setupSubmitBtn.getAttribute('aria-pressed', false)) {
-    setupSubmitBtn.setAttribute('aria-pressed', true);
-  } else {
-    setupSubmitBtn.setAttribute('aria-pressed', false);
-  }
-};
+var setupSubmitBtnAriastatus = changeAriaStatus(setupSubmitBtn, 'aria-pressed');
 var wizardCoat = setupContainer.querySelector('#wizard-coat');
 var wizardCoatColors = [
   'rgb(101, 137, 164)',
