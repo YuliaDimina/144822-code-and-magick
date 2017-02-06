@@ -2,9 +2,9 @@
 // создаем константы для кнопок управления с клавиатуры enter и escape
 var BUTTON_BYENTER = 13;
 var BUTTON_CLOSE_BYESCAPE = 27;
-var changeAriaStatus = function (param1, param2) {
-  if (param1.getAttribute(param2, false)) {
-    param1.setAttribute(param2, true);
+var changeAriaStatus = function (element, aria) {
+  if (element.getAttribute(aria, false)) {
+    element.setAttribute(aria, true);
   }
 };
 // находим контейнер формы настроек персонажа
