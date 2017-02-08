@@ -1,13 +1,13 @@
 'use strict';
 
-window.getRandomElement = function (someArrey) {
-  return Math.floor(Math.random() * someArrey.length);
+window.getRandomElement = function (someArray) {
+  return Math.floor(Math.random() * someArray.length);
 };
 
-window.getRandomElementExcept = function (someArrey, currentValue) {
+window.getRandomElementExcept = function (someArray, currentValue) {
   var newValue = null;
-  while (newValue === currentValue) {
-    newValue = window.getRandomElement(someArrey);
-  }
-  currentValue = newValue;
+  do {
+    newValue = window.getRandomElement(someArray);
+  } while (newValue === currentValue);
+  return newValue;
 };

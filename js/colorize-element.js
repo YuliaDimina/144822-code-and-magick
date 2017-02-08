@@ -2,12 +2,13 @@
 
 window.colorizeElement = function (element, colors, property) {
   var currentColor = colors[0];
-  element.addEventListener('click', function () {
-    var newColor = null;
-    while (!newColor || newColor === currentColor) {
-      newColor = window.getRandomElementExcept(colors, currentColor);
+  function colorizeMainFunction(evt) {
+    var keyEnter = 13;
+    if (evt.type === 'click' || evt.keyCode === keyEnter) {
+      currentColor = window.getRandomElementExcept(colors, currentColor);
+      element.style[property] = colors[currentColor];
     }
-    currentColor = newColor;
-    element.style[property] = colors[newColor];
-  });
+  }
+  element.addEventListener('click', colorizeMainFunction);
+  element.addEventListener('keydown', colorizeMainFunction);
 };

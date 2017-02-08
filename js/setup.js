@@ -36,13 +36,36 @@ window.colorizeElement(setupContainer.querySelector('.setup-fireball-wrap'), [
   '#e6e848'
 ], 'background');
 
-// wizardCoat.addEventListener('click', changeWizard.bind(null, wizardCoat, wizardCoatColors));
-// wizardEyes.addEventListener('click', changeWizard.bind(null, wizardEyes, wizardEyesColors));
+function openSetupContainer() {
+  setupContainer.classList.remove('invisible');
+  setupContainerAriastatus();
+}
 
-// wizardFireball.addEventListener('click', function () {
-//   var fireballColorsRandom = getRandomNumber(wizardFireballColors.length);
-//   wizardFireball.style.background = wizardFireballColors[fireballColorsRandom];
-// });
+function setupOpenHendler() {
+  openSetupContainer();
+  document.addEventListener('keydown', setupCloseHendler);
+}
+
+function isActiveEvent(evt) {
+  return evt.keyCode && evt.keyCode === BUTTON_BYENTER;
+}
+
+function closeSetupContainer() {
+  setupContainer.classList.add('invisible');
+  setupContainerAriastatus();
+}
+
+function setupCloseHendler(evt) {
+  if (evt.keyCode === BUTTON_CLOSE_BYESCAPE) {
+    closeSetupContainer();
+  }
+}
+
+function closeContainer(evt) {
+  if (isActiveEvent(evt)) {
+    closeSetupContainer();
+  }
+}
 
 function listenOpenBtn() {
   setupOpenHendler();
@@ -74,37 +97,6 @@ function listenSubmitBtn() {
 function listenSubmitBtnKeydown(evt) {
   closeContainer(evt);
   changeAriaStatus(setupSubmitBtn, 'aria-pressed');
-}
-
-function openSetupContainer() {
-  setupContainer.classList.remove('invisible');
-  setupContainerAriastatus();
-}
-
-function setupOpenHendler() {
-  openSetupContainer();
-  document.addEventListener('keydown', setupCloseHendler);
-}
-
-function isActiveEvent(evt) {
-  return evt.keyCode && evt.keyCode === BUTTON_BYENTER;
-}
-
-function closeSetupContainer() {
-  setupContainer.classList.add('invisible');
-  setupContainerAriastatus();
-}
-
-function setupCloseHendler(evt) {
-  if (evt.keyCode === BUTTON_CLOSE_BYESCAPE) {
-    closeSetupContainer();
-  }
-}
-
-function closeContainer(evt) {
-  if (isActiveEvent(evt)) {
-    closeSetupContainer();
-  }
 }
 
 function changeAriaStatus(element, aria) {
