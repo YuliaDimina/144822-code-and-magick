@@ -5,31 +5,6 @@ var setupContainer = document.querySelector('.setup');
 var setupOpenBtn = document.querySelector('.setup-open-icon');
 var setupCloseBtn = setupContainer.querySelector('.setup-close');
 var setupSubmitBtn = setupContainer.querySelector('.setup-submit');
-var wizardCoat = setupContainer.querySelector('#wizard-coat');
-var wizardCoatColors = [
-  'rgb(101, 137, 164)',
-  'rgb(241, 43, 107)',
-  'rgb(146, 100, 161)',
-  'rgb(56, 159, 117)',
-  'rgb(215, 210, 55)',
-  'rgb(0, 0, 0)'
-];
-var wizardEyes = setupContainer.querySelector('#wizard-eyes');
-var wizardEyesColors = [
-  'black',
-  'red',
-  'blue',
-  'yellow',
-  'green'
-];
-var wizardFireball = setupContainer.querySelector('.setup-fireball-wrap');
-var wizardFireballColors = [
-  '#ee4830',
-  '#30a8ee',
-  '#5ce6c0',
-  '#e848d5',
-  '#e6e848'
-];
 
 setupOpenBtn.addEventListener('click', listenOpenBtn);
 setupOpenBtn.addEventListener('keydown', listenOpenBtnKeydown);
@@ -38,29 +13,36 @@ setupCloseBtn.addEventListener('keydown', listenCloseBtnKeydown);
 setupSubmitBtn.addEventListener('click', listenSubmitBtn);
 setupSubmitBtn.addEventListener('keydown', listenSubmitBtnKeydown);
 
-function changeWizard(wizardChengingPart, wizardChengingPartColors) {
-  var partColorRandom = getRandomNumber(wizardChengingPartColors.length);
-  wizardChengingPart.style.fill = wizardChengingPartColors[partColorRandom];
-}
-
-wizardCoat.addEventListener('click', function (e) {
-  changeWizard(wizardCoat, wizardCoatColors);
-});
-wizardEyes.addEventListener('click', function (e) {
-  changeWizard(wizardEyes, wizardEyesColors);
-});
+window.colorizeElement(setupContainer.querySelector('#wizard-coat'), [
+  'rgb(101, 137, 164)',
+  'rgb(241, 43, 107)',
+  'rgb(146, 100, 161)',
+  'rgb(56, 159, 117)',
+  'rgb(215, 210, 55)',
+  'rgb(0, 0, 0)'
+], 'fill');
+window.colorizeElement(setupContainer.querySelector('#wizard-eyes'), [
+  'black',
+  'red',
+  'blue',
+  'yellow',
+  'green'
+], 'fill');
+window.colorizeElement(setupContainer.querySelector('.setup-fireball-wrap'), [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
+], 'background');
 
 // wizardCoat.addEventListener('click', changeWizard.bind(null, wizardCoat, wizardCoatColors));
 // wizardEyes.addEventListener('click', changeWizard.bind(null, wizardEyes, wizardEyesColors));
 
-wizardFireball.addEventListener('click', function () {
-  var fireballColorsRandom = getRandomNumber(wizardFireballColors.length);
-  wizardFireball.style.background = wizardFireballColors[fireballColorsRandom];
-});
-
-function getRandomNumber(maxNum) {
-  return Math.floor(Math.random() * maxNum);
-}
+// wizardFireball.addEventListener('click', function () {
+//   var fireballColorsRandom = getRandomNumber(wizardFireballColors.length);
+//   wizardFireball.style.background = wizardFireballColors[fireballColorsRandom];
+// });
 
 function listenOpenBtn() {
   setupOpenHendler();
