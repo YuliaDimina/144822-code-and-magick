@@ -1,6 +1,4 @@
 'use strict';
-var BUTTON_BYENTER = 13;
-var BUTTON_CLOSE_BYESCAPE = 27;
 var setupContainer = document.querySelector('.setup');
 var setupOpenBtn = document.querySelector('.setup-open-icon');
 var setupCloseBtn = setupContainer.querySelector('.setup-close');
@@ -46,23 +44,19 @@ function setupOpenHendler() {
   document.addEventListener('keydown', setupCloseHendler);
 }
 
-function isActiveEvent(evt) {
-  return evt.keyCode && evt.keyCode === BUTTON_BYENTER;
-}
-
 function closeSetupContainer() {
   setupContainer.classList.add('invisible');
   setupContainerAriastatus();
 }
 
 function setupCloseHendler(evt) {
-  if (evt.keyCode === BUTTON_CLOSE_BYESCAPE) {
+  if (evt.keyCode === window.utils.keyCods.BUTTON_CLOSE_BYESCAPE) {
     closeSetupContainer();
   }
 }
 
 function closeContainer(evt) {
-  if (isActiveEvent(evt)) {
+  if (window.utils.isActiveEvent(evt)) {
     closeSetupContainer();
   }
 }
@@ -73,7 +67,7 @@ function listenOpenBtn() {
 }
 
 function listenOpenBtnKeydown(evt) {
-  if (isActiveEvent(evt)) {
+  if (window.utils.isActiveEvent(evt)) {
     setupOpenHendler();
   }
   changeAriaStatus(setupOpenBtn, 'aria-pressed');
