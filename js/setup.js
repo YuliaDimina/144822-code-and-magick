@@ -108,3 +108,8 @@ function setupContainerAriastatus() {
     setupContainer.setAttribute('aria-hidden', true);
   }
 }
+
+// function changeAriaStatus(element, aria) {
+//   var result = element.getAttribute(aria, false);
+//   element.setAttribute(aria, result);
+// }

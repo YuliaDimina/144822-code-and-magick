@@ -18,16 +18,21 @@ window.utils = (function () {
   };
 
   var isDeactivationEvent = function (evt) {
-    return evt.keyCode && evt.keyCode === keyCods.BUTTON_CLOSE_BYESCAPE;
+    return evt.keyCode && evt.keyCode === window.utils.keyCods.BUTTON_CLOSE_BYESCAPE;
   };
 
   var isActiveEvent = function (evt) {
-    return evt.keyCode && evt.keyCode === keyCods.BUTTON_BYENTER;
+    return evt.keyCode && evt.keyCode === window.utils.keyCods.BUTTON_BYENTER;
   };
+
   return {
+    keyCods: keyCods,
+    getRandomElement: getRandomElement,
     getRandomElementExcept: getRandomElementExcept,
     isDeactivationEvent: isDeactivationEvent,
     isActivationEvent: isActiveEvent
   };
-});
-window.utils();
+})();
+window.utils.getRandomElementExcept();
+window.utils.isDeactivationEvent();
+window.utils.isActivationEvent();
