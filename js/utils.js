@@ -1,6 +1,6 @@
 'use strict';
 window.utils = (function () {
-  var keyCods = {
+  var keyCodes = {
     BUTTON_BYENTER: 13,
     BUTTON_CLOSE_BYESCAPE: 27
   };
@@ -18,21 +18,18 @@ window.utils = (function () {
   };
 
   var isDeactivationEvent = function (evt) {
-    return evt.keyCode && evt.keyCode === window.utils.keyCods.BUTTON_CLOSE_BYESCAPE;
+    return evt.keyCode && evt.keyCode === window.utils.keyCodes.BUTTON_CLOSE_BYESCAPE;
   };
 
   var isActiveEvent = function (evt) {
-    return evt.keyCode && evt.keyCode === window.utils.keyCods.BUTTON_BYENTER;
+    return evt.keyCode && evt.keyCode === window.utils.keyCodes.BUTTON_BYENTER;
   };
 
   return {
-    keyCods: keyCods,
+    keyCods: keyCodes,
     getRandomElement: getRandomElement,
     getRandomElementExcept: getRandomElementExcept,
     isDeactivationEvent: isDeactivationEvent,
     isActivationEvent: isActiveEvent
   };
 })();
-window.utils.getRandomElementExcept();
-window.utils.isDeactivationEvent();
-window.utils.isActivationEvent();
