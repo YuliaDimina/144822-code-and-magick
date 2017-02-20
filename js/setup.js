@@ -11,28 +11,104 @@ setupCloseBtn.addEventListener('keydown', listenCloseBtnKeydown);
 setupSubmitBtn.addEventListener('click', listenSubmitBtn);
 setupSubmitBtn.addEventListener('keydown', listenSubmitBtnKeydown);
 
-window.colorizeElement(setupContainer.querySelector('#wizard-coat'), [
-  'rgb(101, 137, 164)',
-  'rgb(241, 43, 107)',
-  'rgb(146, 100, 161)',
-  'rgb(56, 159, 117)',
-  'rgb(215, 210, 55)',
-  'rgb(0, 0, 0)'
-], 'fill');
-window.colorizeElement(setupContainer.querySelector('#wizard-eyes'), [
-  'black',
-  'red',
-  'blue',
-  'yellow',
-  'green'
-], 'fill');
-window.colorizeElement(setupContainer.querySelector('.setup-fireball-wrap'), [
-  '#ee4830',
-  '#30a8ee',
-  '#5ce6c0',
-  '#e848d5',
-  '#e6e848'
-], 'background');
+var coatEl = setupContainer.querySelector('#wizard-coat');
+
+coatEl.addEventListener('click', function (evt) {
+
+  if (evt.type === 'click' || evt.keyCode === window.utils.keyCods.BUTTON_BYENTER) {
+    window.colorizeElement(coatEl, [
+      'rgb(101, 137, 164)',
+      'rgb(241, 43, 107)',
+      'rgb(146, 100, 161)',
+      'rgb(56, 159, 117)',
+      'rgb(215, 210, 55)',
+      'rgb(0, 0, 0)'
+    ], fillElement);
+  }
+
+});
+
+coatEl.addEventListener('keydown', function (evt) {
+  if (evt.type === 'click' || evt.keyCode === window.utils.keyCods.BUTTON_BYENTER) {
+    window.colorizeElement(coatEl, [
+      'rgb(101, 137, 164)',
+      'rgb(241, 43, 107)',
+      'rgb(146, 100, 161)',
+      'rgb(56, 159, 117)',
+      'rgb(215, 210, 55)',
+      'rgb(0, 0, 0)'
+    ], fillElement);
+  }
+});
+
+var eyesEl = setupContainer.querySelector('#wizard-eyes');
+
+eyesEl.addEventListener('click', function (evt) {
+
+  if (evt.type === 'click' || evt.keyCode === window.utils.keyCods.BUTTON_BYENTER) {
+    window.colorizeElement(eyesEl, [
+      'black',
+      'red',
+      'blue',
+      'yellow',
+      'green'
+    ], fillElement);
+  }
+
+});
+
+eyesEl.addEventListener('keydown', function (evt) {
+
+  if (evt.type === 'click' || evt.keyCode === window.utils.keyCods.BUTTON_BYENTER) {
+    window.colorizeElement(eyesEl, [
+      'black',
+      'red',
+      'blue',
+      'yellow',
+      'green'
+    ], fillElement);
+  }
+
+});
+
+
+var fireBallEl = setupContainer.querySelector('.setup-fireball-wrap');
+
+fireBallEl.addEventListener('click', function (evt) {
+
+  if (evt.type === 'click' || evt.keyCode === window.utils.keyCods.BUTTON_BYENTER) {
+    window.colorizeElement(fireBallEl, [
+      '#ee4830',
+      '#30a8ee',
+      '#5ce6c0',
+      '#e848d5',
+      '#e6e848'
+    ], changeElementBackground);
+  }
+
+});
+
+fireBallEl.addEventListener('keydown', function (evt) {
+
+  if (evt.type === 'click' || evt.keyCode === window.utils.keyCods.BUTTON_BYENTER) {
+    window.colorizeElement(fireBallEl, [
+      '#ee4830',
+      '#30a8ee',
+      '#5ce6c0',
+      '#e848d5',
+      '#e6e848'
+    ], changeElementBackground);
+  }
+
+});
+
+var fillElement = function (element, color) {
+  element.style.fill = color;
+};
+
+var changeElementBackground = function (element, color) {
+  element.style.backgroundColor = color;
+};
 
 function openSetupContainer() {
   setupContainer.classList.remove('invisible');
